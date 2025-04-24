@@ -84,10 +84,13 @@ BOT = MyBot(cosmos_checkpointer=checkpointer_async)
 async def messages(req: Request) -> Response:
     return await ADAPTER.process(req, BOT)
 
-APP = web.Application(middlewares=[aiohttp_error_middleware])
-APP.router.add_post("/api/messages", messages)
+def init_func(argv):
+    APP = web.Application(middlewares=[aiohttp_error_middleware])
+    APP.router.add_post("/api/messages", messages)
+    return APP
 
 if __name__ == "__main__":
+    APP = init_func(None)
     try:
         #web.run_app(APP, host="localhost", port=os.environ.PORT)
         #web.run_app(APP, host="localhost", port=CONFIG.PORT)
