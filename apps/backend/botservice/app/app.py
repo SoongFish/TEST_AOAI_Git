@@ -91,6 +91,6 @@ if __name__ == "__main__":
     try:
         #web.run_app(APP, host="localhost", port=os.environ.PORT)
         #web.run_app(app, host="localhost", port=CONFIG.PORT)
-        web.run_app(APP, host="0.0.0.0", port=8000)
+        web.run_app(app, host="0.0.0.0", port=8000)
     except Exception as error:
         raise error
